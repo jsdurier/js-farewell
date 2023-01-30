@@ -309,7 +309,7 @@ var Page;
 })(Page || (Page = {}));
 class ExampleComponent {
     constructor() {
-        this.page = Page.MESSAGES;
+        this.page = Page.HOME;
         this.pageEnum = Page;
     }
     goToContactPage() {
