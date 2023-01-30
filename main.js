@@ -135,6 +135,54 @@ DataService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["�
 
 /***/ }),
 
+/***/ 5374:
+/*!******************************!*\
+  !*** ./src/email.service.ts ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EmailService": () => (/* binding */ EmailService)
+/* harmony export */ });
+/* harmony import */ var D_gitstore_js_farewell_node_modules_pnpm_babel_runtime_7_18_9_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./node_modules/.pnpm/@babel+runtime@7.18.9/node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js */ 9283);
+/* harmony import */ var _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emailjs/browser */ 8699);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 9332);
+
+
+
+class EmailService {
+  sendEmail(name, message) {
+    return (0,D_gitstore_js_farewell_node_modules_pnpm_babel_runtime_7_18_9_node_modules_babel_runtime_helpers_esm_asyncToGenerator_js__WEBPACK_IMPORTED_MODULE_0__["default"])(function* () {
+      try {
+        const result = yield _emailjs_browser__WEBPACK_IMPORTED_MODULE_1__["default"].send('service_izyu928', // 'YOUR_SERVICE_ID',
+        'template_ohjl0yv', // 'YOUR_TEMPLATE_ID',
+        {
+          name,
+          message
+        }, 'W9mdSKT0h1AV_qetX' //'YOUR_PUBLIC_KEY'
+        );
+      } catch (err) {
+        console.error('fail to send message');
+        console.error(err.text);
+      }
+    })();
+  }
+
+}
+
+EmailService.ɵfac = function EmailService_Factory(t) {
+  return new (t || EmailService)();
+};
+
+EmailService.ɵprov = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjectable"]({
+  token: EmailService,
+  factory: EmailService.ɵfac,
+  providedIn: 'root'
+});
+
+/***/ }),
+
 /***/ 3302:
 /*!*****************************************!*\
   !*** ./src/environments/environment.ts ***!
@@ -149,7 +197,15 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: false,
+    firebaseConfig: {
+        apiKey: "AIzaSyBTbHp8vSekqAjOPkSG-sIavtX6jDsMYQE",
+        authDomain: "js-farewell.firebaseapp.com",
+        projectId: "js-farewell",
+        storageBucket: "js-farewell.appspot.com",
+        messagingSenderId: "288393072252",
+        appId: "1:288393072252:web:8043b717b2ce245572c3f9"
+    }
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -232,30 +288,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ ExampleComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 1105);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common */ 1105);
 /* harmony import */ var _event_page_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event-page.component */ 8265);
-/* harmony import */ var _stay_in_touch_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stay-in-touch.component */ 7331);
-/* harmony import */ var _tool_bar_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tool-bar.component */ 1129);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ 9332);
+/* harmony import */ var _messages_page_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./messages-page.component */ 8484);
+/* harmony import */ var _stay_in_touch_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stay-in-touch.component */ 7331);
+/* harmony import */ var _tool_bar_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tool-bar.component */ 1129);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 9332);
+
 
 
 
 
 
 function ExampleComponent_wp_event_page_3_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "wp-event-page");
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "wp-event-page");
 } }
 function ExampleComponent_wp_stay_in_touch_4_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelement"](0, "wp-stay-in-touch");
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "wp-stay-in-touch");
+} }
+function ExampleComponent_wp_messages_page_5_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](0, "wp-messages-page");
 } }
 var Page;
 (function (Page) {
     Page[Page["HOME"] = 0] = "HOME";
     Page[Page["CONTACT"] = 1] = "CONTACT";
+    Page[Page["MESSAGES"] = 2] = "MESSAGES";
 })(Page || (Page = {}));
 class ExampleComponent {
     constructor() {
-        this.page = Page.HOME;
+        this.page = Page.MESSAGES;
         this.pageEnum = Page;
     }
     goToContactPage() {
@@ -264,25 +326,32 @@ class ExampleComponent {
     goToHomePage() {
         this.page = Page.HOME;
     }
+    goToMessagesPage() {
+        this.page = Page.MESSAGES;
+    }
 }
 ExampleComponent.ɵfac = function ExampleComponent_Factory(t) { return new (t || ExampleComponent)(); };
-ExampleComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineComponent"]({ type: ExampleComponent, selectors: [["wp-example"]], standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵStandaloneFeature"]], decls: 5, vars: 2, consts: [[3, "goToContactPage", "goToHomePage"], [1, "main-content"], [4, "ngIf"]], template: function ExampleComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div")(1, "wp-tool-bar", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵlistener"]("goToContactPage", function ExampleComponent_Template_wp_tool_bar_goToContactPage_1_listener() { return ctx.goToContactPage(); })("goToHomePage", function ExampleComponent_Template_wp_tool_bar_goToHomePage_1_listener() { return ctx.goToHomePage(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](2, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](3, ExampleComponent_wp_event_page_3_Template, 1, 0, "wp-event-page", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtemplate"](4, ExampleComponent_wp_stay_in_touch_4_Template, 1, 0, "wp-stay-in-touch", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]()();
+ExampleComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({ type: ExampleComponent, selectors: [["wp-example"]], standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵStandaloneFeature"]], decls: 6, vars: 3, consts: [[3, "goToContactPage", "goToHomePage", "goToMessagesPage"], [1, "main-content"], [4, "ngIf"]], template: function ExampleComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div")(1, "wp-tool-bar", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("goToContactPage", function ExampleComponent_Template_wp_tool_bar_goToContactPage_1_listener() { return ctx.goToContactPage(); })("goToHomePage", function ExampleComponent_Template_wp_tool_bar_goToHomePage_1_listener() { return ctx.goToHomePage(); })("goToMessagesPage", function ExampleComponent_Template_wp_tool_bar_goToMessagesPage_1_listener() { return ctx.goToMessagesPage(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](2, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](3, ExampleComponent_wp_event_page_3_Template, 1, 0, "wp-event-page", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](4, ExampleComponent_wp_stay_in_touch_4_Template, 1, 0, "wp-stay-in-touch", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](5, ExampleComponent_wp_messages_page_5_Template, 1, 0, "wp-messages-page", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx.page === ctx.pageEnum.HOME);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ctx.page === ctx.pageEnum.CONTACT);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.page === ctx.pageEnum.HOME);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.page === ctx.pageEnum.CONTACT);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngIf", ctx.page === ctx.pageEnum.MESSAGES);
     } }, dependencies: [_event_page_component__WEBPACK_IMPORTED_MODULE_0__["default"],
-        _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgIf,
-        _stay_in_touch_component__WEBPACK_IMPORTED_MODULE_1__["default"],
-        _tool_bar_component__WEBPACK_IMPORTED_MODULE_2__["default"]], styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: #225;\n  color: white;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.main-content[_ngcontent-%COMP%] {\n  flex: 1;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImV4YW1wbGUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQyxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxZQUFBO0VBRUEsc0JBQUE7RUFDQSxZQUFBO0VBQ0EseUNBQUE7QUFBRDs7QUFXQTtFQUNDLE9BQUE7QUFSRCIsImZpbGUiOiJleGFtcGxlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuXHRoZWlnaHQ6IDEwMCU7XG5cdC8vIGJhY2tncm91bmQtY29sb3I6IG9yYW5nZTtcblx0YmFja2dyb3VuZC1jb2xvcjogIzIyNTtcblx0Y29sb3I6IHdoaXRlO1xuXHRmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjtcblxuXHQvLyA+ICoge1xuXHQvLyBcdGhlaWdodDogMTAwJTtcblx0Ly8gfVxuXHQvLyA+IHdwLWV2ZW50LXBhZ2Uge1xuXHQvLyBcdGhlaWdodDogMTAwJTtcblx0Ly8gXHRkaXNwbGF5OiBibG9jaztcblx0Ly8gfVxufVxuXG4ubWFpbi1jb250ZW50IHtcblx0ZmxleDogMTtcbn1cbiJdfQ== */"] });
+        _messages_page_component__WEBPACK_IMPORTED_MODULE_1__["default"],
+        _angular_common__WEBPACK_IMPORTED_MODULE_5__.NgIf,
+        _stay_in_touch_component__WEBPACK_IMPORTED_MODULE_2__["default"],
+        _tool_bar_component__WEBPACK_IMPORTED_MODULE_3__["default"]], styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  background-color: #225;\n  color: white;\n  font-family: Arial, Helvetica, sans-serif;\n}\n\n.main-content[_ngcontent-%COMP%] {\n  flex: 1;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImV4YW1wbGUuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDQyxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxZQUFBO0VBRUEsc0JBQUE7RUFDQSxZQUFBO0VBQ0EseUNBQUE7QUFBRDs7QUFXQTtFQUNDLE9BQUE7QUFSRCIsImZpbGUiOiJleGFtcGxlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xuXHRkaXNwbGF5OiBmbGV4O1xuXHRmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuXHRoZWlnaHQ6IDEwMCU7XG5cdC8vIGJhY2tncm91bmQtY29sb3I6IG9yYW5nZTtcblx0YmFja2dyb3VuZC1jb2xvcjogIzIyNTtcblx0Y29sb3I6IHdoaXRlO1xuXHRmb250LWZhbWlseTogQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZjtcblxuXHQvLyA+ICoge1xuXHQvLyBcdGhlaWdodDogMTAwJTtcblx0Ly8gfVxuXHQvLyA+IHdwLWV2ZW50LXBhZ2Uge1xuXHQvLyBcdGhlaWdodDogMTAwJTtcblx0Ly8gXHRkaXNwbGF5OiBibG9jaztcblx0Ly8gfVxufVxuXG4ubWFpbi1jb250ZW50IHtcblx0ZmxleDogMTtcbn1cbiJdfQ== */"] });
 
 
 /***/ }),
@@ -395,6 +464,73 @@ if (_environments_environment__WEBPACK_IMPORTED_MODULE_2__.environment.productio
 
 /***/ }),
 
+/***/ 8484:
+/*!****************************************!*\
+  !*** ./src/messages-page.component.ts ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MessagesPageComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 9332);
+/* harmony import */ var _email_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./email.service */ 5374);
+
+
+class MessagesPageComponent {
+    constructor(_emailService) {
+        this._emailService = _emailService;
+        this.name = '';
+        this.message = '';
+    }
+    change(event) {
+        this.name = event.target.value;
+    }
+    messageChange(event) {
+        this.message = event.target.value;
+    }
+    validate() {
+        if (this.name === '') {
+            alert('Le nom est vide');
+            return;
+        }
+        if (this.message === '') {
+            alert('Le message est vide');
+            return;
+        }
+        this._emailService.sendEmail(this.name, this.message);
+    }
+}
+MessagesPageComponent.ɵfac = function MessagesPageComponent_Factory(t) { return new (t || MessagesPageComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_email_service__WEBPACK_IMPORTED_MODULE_0__.EmailService)); };
+MessagesPageComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: MessagesPageComponent, selectors: [["wp-messages-page"]], standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]], decls: 14, vars: 2, consts: [[1, "main-content"], [1, "form-field"], [1, "label"], ["type", "text", "placeholder", "Nom", 3, "value", "change"], ["placeholder", "Message", 3, "value", "change"], [1, "center"], [1, "submit-button", 3, "click"]], template: function MessagesPageComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div")(1, "div", 0)(2, "div", 1)(3, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Nom ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "input", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function MessagesPageComponent_Template_input_change_5_listener($event) { return ctx.change($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 1)(7, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, " Message ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "textarea", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function MessagesPageComponent_Template_textarea_change_9_listener($event) { return ctx.messageChange($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "\n      ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "div", 5)(12, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function MessagesPageComponent_Template_div_click_12_listener() { return ctx.validate(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](13, " Envoyer ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", ctx.name);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", ctx.message);
+    } }, styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  height: 100%;\n  padding: 50px 20px 100px 50px;\n  display: flex;\n  flex-direction: column;\n  box-sizing: border-box;\n}\n\ninput[_ngcontent-%COMP%] {\n  padding: 10px 20px;\n  min-width: 250px;\n  max-width: 400px;\n  box-sizing: border-box;\n}\n\n.form-field[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  align-items: start;\n  margin-bottom: 50px;\n}\n\n.label[_ngcontent-%COMP%] {\n  margin-bottom: 5px;\n}\n\ntextarea[_ngcontent-%COMP%] {\n  height: 200px;\n  min-width: 250px;\n  max-width: 400px;\n  box-sizing: border-box;\n  padding: 10px 20px;\n}\n\n.main-content[_ngcontent-%COMP%] {\n  flex: 1;\n}\n\n.submit-button[_ngcontent-%COMP%] {\n  color: white;\n  border: solid 2px white;\n  padding: 20px;\n  border-radius: 20px;\n  cursor: pointer;\n}\n\n.submit-button[_ngcontent-%COMP%]:active {\n  color: #225;\n  background-color: white;\n}\n\n.submit-button[_ngcontent-%COMP%]:hover {\n  color: #225;\n  background-color: white;\n}\n\n.center[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1lc3NhZ2VzLXBhZ2UuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFBO0VBRUEsNkJBQUE7RUFDQSxhQUFBO0VBQ0Esc0JBQUE7RUFDQSxzQkFBQTtBQUFGOztBQUdBO0VBQ0Usa0JBQUE7RUFDQSxnQkFBQTtFQUNBLGdCQUFBO0VBQ0Esc0JBQUE7QUFBRjs7QUFHQTtFQUNFLGFBQUE7RUFDQSxzQkFBQTtFQUNBLGtCQUFBO0VBQ0EsbUJBQUE7QUFBRjs7QUFHQTtFQUNFLGtCQUFBO0FBQUY7O0FBR0E7RUFDRSxhQUFBO0VBQ0EsZ0JBQUE7RUFDQSxnQkFBQTtFQUNBLHNCQUFBO0VBQ0Esa0JBQUE7QUFBRjs7QUFHQTtFQUNFLE9BQUE7QUFBRjs7QUFHQTtFQUNFLFlBQUE7RUFDQSx1QkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLGVBQUE7QUFBRjs7QUFHQTtFQUNFLFdBQUE7RUFDQSx1QkFBQTtBQUFGOztBQUdBO0VBQ0UsV0FBQTtFQUNBLHVCQUFBO0FBQUY7O0FBR0E7RUFDRSxhQUFBO0VBQ0EsdUJBQUE7QUFBRiIsImZpbGUiOiJtZXNzYWdlcy1wYWdlLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xyXG4gIGhlaWdodDogMTAwJTtcclxuICAvLyBiYWNrZ3JvdW5kLWNvbG9yOiByZWQ7XHJcbiAgcGFkZGluZzogNTBweCAyMHB4IDEwMHB4IDUwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuXHJcbmlucHV0IHtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbiAgbWluLXdpZHRoOiAyNTBweDtcclxuICBtYXgtd2lkdGg6IDQwMHB4O1xyXG4gIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XHJcbn1cclxuXHJcbi5mb3JtLWZpZWxkIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgYWxpZ24taXRlbXM6IHN0YXJ0O1xyXG4gIG1hcmdpbi1ib3R0b206IDUwcHg7XHJcbn1cclxuXHJcbi5sYWJlbCB7XHJcbiAgbWFyZ2luLWJvdHRvbTogNXB4O1xyXG59XHJcblxyXG50ZXh0YXJlYSB7XHJcbiAgaGVpZ2h0OiAyMDBweDtcclxuICBtaW4td2lkdGg6IDI1MHB4O1xyXG4gIG1heC13aWR0aDogNDAwcHg7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBwYWRkaW5nOiAxMHB4IDIwcHg7XHJcbn1cclxuXHJcbi5tYWluLWNvbnRlbnQge1xyXG4gIGZsZXg6IDE7XHJcbn1cclxuXHJcbi5zdWJtaXQtYnV0dG9uIHtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgYm9yZGVyOiBzb2xpZCAycHggd2hpdGU7XHJcbiAgcGFkZGluZzogMjBweDtcclxuICBib3JkZXItcmFkaXVzOiAyMHB4O1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLnN1Ym1pdC1idXR0b246YWN0aXZlIHtcclxuICBjb2xvcjogIzIyNTtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLnN1Ym1pdC1idXR0b246aG92ZXIge1xyXG4gIGNvbG9yOiAjMjI1O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xyXG59XHJcblxyXG4uY2VudGVyIHtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG59XHJcbiJdfQ== */"] });
+
+
+/***/ }),
+
 /***/ 7331:
 /*!****************************************!*\
   !*** ./src/stay-in-touch.component.ts ***!
@@ -472,18 +608,23 @@ class ToolBarComponent {
     constructor() {
         this.goToContactPage = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.EventEmitter();
         this.goToHomePage = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.EventEmitter();
+        this.goToMessagesPage = new _angular_core__WEBPACK_IMPORTED_MODULE_1__.EventEmitter();
     }
 }
 ToolBarComponent.ɵfac = function ToolBarComponent_Factory(t) { return new (t || ToolBarComponent)(); };
-ToolBarComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: ToolBarComponent, selectors: [["wp-tool-bar"]], outputs: { goToContactPage: "goToContactPage", goToHomePage: "goToHomePage" }, standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]], decls: 4, vars: 0, consts: [[3, "click"], [1, "menu-item", 3, "click"]], template: function ToolBarComponent_Template(rf, ctx) { if (rf & 1) {
+ToolBarComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: ToolBarComponent, selectors: [["wp-tool-bar"]], outputs: { goToContactPage: "goToContactPage", goToHomePage: "goToHomePage", goToMessagesPage: "goToMessagesPage" }, standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]], decls: 7, vars: 0, consts: [[3, "click"], [1, "menu"], [1, "menu-item", 3, "click"]], template: function ToolBarComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div")(1, "wp-title", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolBarComponent_Template_wp_title_click_1_listener() { return ctx.goToHomePage.next(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolBarComponent_Template_div_click_2_listener() { return ctx.goToContactPage.next(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, " Contact ");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-    } }, dependencies: [_title_component__WEBPACK_IMPORTED_MODULE_0__["default"]], styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  background-color: rgba(10, 10, 20, 0.5);\n  padding: 20px 50px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.menu-item[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRvb2wtYmFyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRUUsdUNBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0FBQUY7O0FBR0E7RUFDRSxlQUFBO0FBQUYiLCJmaWxlIjoidG9vbC1iYXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyI6aG9zdCA+IGRpdiB7XHJcbiAgLy8gaGVpZ2h0OiA3NXB4O1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMTAsMTAsMjAsMC41KTtcclxuICBwYWRkaW5nOiAyMHB4IDUwcHg7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcclxufVxyXG5cclxuLm1lbnUtaXRlbSB7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcbiJdfQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "div", 1)(3, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolBarComponent_Template_div_click_3_listener() { return ctx.goToContactPage.next(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Contact ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function ToolBarComponent_Template_div_click_5_listener() { return ctx.goToMessagesPage.next(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, " Messages ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+    } }, dependencies: [_title_component__WEBPACK_IMPORTED_MODULE_0__["default"]], styles: ["[_nghost-%COMP%]    > div[_ngcontent-%COMP%] {\n  background-color: rgba(10, 10, 20, 0.5);\n  padding: 20px 50px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.menu-item[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n\n.menu-item[_ngcontent-%COMP%]:not(:last-child) {\n  margin-right: 20px;\n}\n\n.menu[_ngcontent-%COMP%] {\n  display: flex;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInRvb2wtYmFyLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBRUUsdUNBQUE7RUFDQSxrQkFBQTtFQUNBLGFBQUE7RUFDQSxtQkFBQTtFQUNBLDhCQUFBO0FBQUY7O0FBR0E7RUFDRSxlQUFBO0FBQUY7O0FBR0E7RUFDSSxrQkFBQTtBQUFKOztBQUdBO0VBQ0UsYUFBQTtBQUFGIiwiZmlsZSI6InRvb2wtYmFyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiOmhvc3QgPiBkaXYge1xyXG4gIC8vIGhlaWdodDogNzVweDtcclxuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDEwLDEwLDIwLDAuNSk7XHJcbiAgcGFkZGluZzogMjBweCA1MHB4O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IHNwYWNlLWJldHdlZW47XHJcbn1cclxuXHJcbi5tZW51LWl0ZW0ge1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLm1lbnUtaXRlbTpub3QoOmxhc3QtY2hpbGQpIHtcclxuICAgIG1hcmdpbi1yaWdodDogMjBweDtcclxufVxyXG5cclxuLm1lbnUge1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbn1cclxuIl19 */"] });
 
 
 /***/ })
